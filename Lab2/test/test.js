@@ -19,7 +19,7 @@ describe('GET Home', () => {
     it('Should say Hello World', () => {
         chai
         .request(app)
-        .get('/', (err, res) => {
+        .get('/hw', (err, res) => {
           const result = res.body
           expect(result).to.equal("Hello World")
         })
