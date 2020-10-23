@@ -2,6 +2,7 @@
 
 ## Links
 Production Site = https://fhwnwebemrerprod.azurewebsites.net
+DEvelopment Site = http://fhwnwebemrer09102020.azurewebsites.net/
 
 
 ## Build Fail
