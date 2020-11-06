@@ -67,7 +67,8 @@ stages:
     strategy:
       runOnce:
         deploy:
-          steps:            
+          steps:
+          - script: 'cd Lab2 && npm install'
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: fhwnWebEmreR09102020'
             inputs:
