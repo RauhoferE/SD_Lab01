@@ -42,20 +42,3 @@ Bei Teil2 geht es darum zwei eigene Images für MYSQL und wordpress zu erstellen
 14. Danach habe ich die docker-compose.yml file erstellt.
 
 15. Man kann die beiden Images mit "sudo docker-compose up" deployen.
-
-
-
-
-
-
-
-
-# Imagenamen
-MSQL = a29cd67dce30
-Apache = 3d43864b90dc
-
-sudo docker create -v /home/user/var/www/html:/var/www/html -v /home/user/var/log:/var/log -p 80:80 -p 143:143 3d43864b90dc
-
-sudo docker create -v /home/user/var/log:/var/log -p 80:80 -p 143:143 3d43864b90dc
-
-sudo docker run --name mysql -d -v /opt/mysql/data:/var/lib/mysql -e 'DB_NAME=wordpress' -e 'DB_USER=wordpress' -e 'DB_PASS=password' -p 3306:3306 a29cd67dce30
