@@ -1,10 +1,20 @@
 services:
-   db:
-     image: mysql:5.7
-     volumes:
-     restart: always
-     environment:
-
-
-volumes:
-    db_data: {}
+  db:
+    image: 104609/mysqlimage:01
+    volumes: 
+    - "/opt/mysql/data:/var/lib/mysql"
+    restart: always
+    environment:
+      - DB_NAME=wordpress
+      - DB_USER=wordpress
+      - DB_PASS=password
+    ports: 
+      - "3306:3306"
+  web:
+    image: 104609/wordpress
+    volumes:
+      - "/home/user/var/log:/var/log"
+    restart: always
+    ports: 
+      - "80:80"
+      - "143:143"
