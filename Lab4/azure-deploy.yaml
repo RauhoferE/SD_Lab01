@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: mysql
+        image: 104609/mysqlimage:01
+        args:
+        - "--ignore-db-dir=lost+found"
+        env:
+        - name: DB_NAME
+          value: wordpress
+        - name: DB_USER
+          value: wordpress
+        - name: DB_PASS
+          value: password
+        resources: 
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: volume
+          mountPath: /var/lib/mysql
+      - name: apache
+        image: 104609/wordpress
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: azure-managed-disk
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-app-front-2
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: wordpress-app
+
