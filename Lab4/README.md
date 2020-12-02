@@ -19,4 +19,4 @@ Die Seite funktioniert wegen einen unbekannten Fehler nicht.
 
 ## Screenshot
 
-![Cluster](cluster.png)
+![Cluster](cluster.PNG)
